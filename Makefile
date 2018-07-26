@@ -1,5 +1,8 @@
 SHELL := /bin/bash
 
+WHOAMI := $(shell whoami)
+TAG=mousejack-${WHOAMI}
+
 dev: submodules venv
 	@source ./venv/bin/activate; \
 	make -C ./nrf-research-firmware;
@@ -13,3 +16,6 @@ venv:
 	@virtualenv ./venv; \
 	source ./venv/bin/activate; \
 	pip install pyusb;
+
+build_docker:
+	docker build -t $(TAG) .
