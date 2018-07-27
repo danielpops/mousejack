@@ -17,5 +17,9 @@ venv:
 	source ./venv/bin/activate; \
 	pip install pyusb;
 
+clean:
+	@deactivate 2> /dev/null || true
+	@rm -rf ./venv
+
 build_docker:
 	docker build -t $(TAG) .
